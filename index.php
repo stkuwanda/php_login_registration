@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Login</h1>
+  <div class="container">
+    <div class="form-box" id="login-form">
+      <p action="">
+        <h2>Login</h2>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" name="login">Login</button>
+        <p>Don't have an account? <a href="#">Register</a></p>
+      </p>
+    </div>
+  </div>
 </body>
 </html>
