@@ -13,7 +13,7 @@ if (isset($_POST['register'])) {
   $stmt->bind_param("s", $email);
 
   if ($stmt->execute()) {
-    // $stmt->store_result();
+    $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
       $_SESSION['register_error'] = "Email already registered. Please use a different email.";
