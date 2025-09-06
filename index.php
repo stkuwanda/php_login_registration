@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+$errors = ['login' => $_SESSION['login_error'] ?? '', 'register' => $_SESSION['register_error'] ?? ''];
+$success = $_SESSION['register_success'] ?? '';
+$active_form = $_SESSION['active_form'] ?? 'login';
+
+session_unset();
+
+function showError($error)
+{
+  return !empty($error) ? '<div class="error-message">' . htmlspecialchars($error) . '</div>' : '';
+}
+
+function showSuccess($message)
+{
+  return !empty($message) ? '<div class="success-message">' . htmlspecialchars($message) . '</div>' : '';
+}
+
+function isActiveForm($formName, $active_form)
+{
+  return $formName === $active_form ? 'active' : '';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,18 +36,21 @@
 
 <body>
   <div class="container">
-    <div class="form-box active" id="login-form">
+    <div class="form-box <?= isActiveForm('login', $active_form)?>" id="login-form">
       <form action="login_register.php" method="post">
         <h2>Login</h2>
+        <?= showError($errors['login']); ?>
+        <?= showSuccess($success); ?>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit" name="login">Login</button>
         <p>Don't have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
       </form>
     </div>
-    <div class="form-box" id="register-form">
+    <div class="form-box <?= isActiveForm('register', $active_form)?>" id="register-form">
       <form action="login_register.php" method="post">
         <h2>Register</h2>
+        <?= showError($errors['register']); ?>
         <input type="text" name="name" placeholder="Name" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
