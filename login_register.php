@@ -13,7 +13,7 @@ if (isset($_POST['register'])) {
   $stmt->bind_param("s", $email);
 
   if ($stmt->execute()) {
-    $stmt->store_result();
+    // $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
       $_SESSION['register_error'] = "Email already registered. Please use a different email.";
@@ -25,9 +25,11 @@ if (isset($_POST['register'])) {
       $stmt1->bind_param("ssss", $name, $email, $password, $role);
 
       if ($stmt1->execute()) {
-        echo "Registration successful. You can now <a href='index.php'>login</a>.";
+        $_SESSION['register_success'] = "Registration successful. Please login.";
+        $_SESSION['active_form'] = "login";
       } else {
-        echo "Error: " . $stmt1->error;
+        $_SESSION['register_error'] = "Registration failed. Please try again.";
+        // echo "Error: " . $stmt1->error;
       }
 
       $stmt1->close();
