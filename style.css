@@ -86,7 +86,7 @@ p a:hover {
 	text-decoration: underline;
 }
 
-.error_message {
+.error-message {
   background: #ffdddd;
   color: #d8000c;
   padding: 10px;
@@ -95,11 +95,15 @@ p a:hover {
   border-radius: 5px;
 }
 
-.success_message {
+.success-message {
   background: #ddffdd;
   color: #4F8A10;
   padding: 10px;
   border-left: 6px solid #4CAF50;
   margin-bottom: 15px;
   border-radius: 5px;
+}
+
+.bg-light {
+  background-color: #f9f9f9;
 }
